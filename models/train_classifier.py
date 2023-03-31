@@ -27,7 +27,7 @@ def load_data(database_filepath):
         y: target dataframe
         category_names: features list of target
     '''
-    engine = create_engine(f'sqlite:///{database_filepath}.db')
+    engine = create_engine(f'sqlite:///{database_filepath}')
     df = pd.read_sql_table('DisasterResponse',engine)
     X = df['message']
     y = df.iloc[:,4:]
@@ -68,10 +68,10 @@ def build_model():
     
     parameters = {
         'tfidf__use_idf': [True, False],
-        'clf__estimator__n_estimators': [10, 20, 50, 100]
+        'clf__estimator__n_estimators': [10, 20, 50]
     }
 
-    cv = GridSearchCV(pipeline, param_grid = parameters)
+    cv = GridSearchCV(pipeline, param_grid = parameters, verbose = 3)
     return cv
 
 

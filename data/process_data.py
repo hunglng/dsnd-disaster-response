@@ -51,7 +51,7 @@ def save_data(df, database_filename):
         df: dataframe need to be stored
         database_filename: file name of sqlite database
     '''
-    engine = create_engine(f'sqlite:///{database_filename}.db')
+    engine = create_engine(f'sqlite:///{database_filename}')
     df.to_sql('DisasterResponse', engine, index=False)  
 
 
